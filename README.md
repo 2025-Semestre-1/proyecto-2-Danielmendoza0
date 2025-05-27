@@ -28,12 +28,10 @@ PIEZAS = [
 def mostrar_tablero():
     global canvas, tablero
     canvas.delete("all")
-
     tablero = [] 
     with open("matriz.txt", "r") as archivo:
         for linea in archivo:
             tablero.append(linea.strip().split(" "))
-
     for fila in range(len(tablero)):
         for col in range(len(tablero[0])):
             valor = tablero[fila][col]
@@ -41,15 +39,12 @@ def mostrar_tablero():
             y1 = fila * 20
             x2 = x1 + 20
             y2 = y1 + 20
-
             color = "gray" if valor == "+" else "white"
             canvas.create_rectangle(x1, y1, x2, y2, fill=color, outline="black")
     pieza_actual = random.choice(PIEZAS)
     fila_inicio = 1
     col_inicio = 4
     dibujar_pieza_matriz(fila_inicio, col_inicio, pieza_actual)
-
-
 def dibujar_pieza_matriz(fila_base, col_base, pieza):
     for i in range(len(pieza)):
         for j in range(len(pieza[i])):
